@@ -1,0 +1,1 @@
+The problem with new-if is that the consequent and alternative will be evaluated regardless of (and before) the truth-value of the predicate. This means sqrt-iter will never terminate, as in problem 1.5.
