@@ -1,0 +1,1 @@
+Does what it says on the tin, adds the absolute value of b to a.
