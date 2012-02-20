@@ -1,6 +1,6 @@
 (define (cbrt-iter lastguess guess x)
   (if (good-enough? lastguess guess x)
-      (* guess 1.0)
+      (* guess 1.0) ; To get a decimal answer in the REPL.
       (cbrt-iter guess (improve guess x) x)))
 
 (define (improve y x)
