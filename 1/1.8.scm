@@ -1,6 +1,6 @@
 (define (cbrt-iter lastguess guess x)
   (if (good-enough? lastguess guess x)
-      guess
+      (* guess 1.0)
       (cbrt-iter guess (improve guess x) x)))
 
 (define (improve y x)
@@ -21,3 +21,5 @@
 (define (square x)
   (* x x))
 
+; This works pretty well.
+; (cube (cbrt 0.00347001))
