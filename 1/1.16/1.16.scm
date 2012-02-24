@@ -1,7 +1,7 @@
-(define (fast-expt a b n) ; This is the given recursive solution.
+(define (fast-expt b n) ; This is the given recursive solution.
   (cond ((= n 0) 1)
-        ((even? n) (square (fast-expt a b (/ n 2))))
-        (else (* b (fast-expt a b (- n 1))))))
+        ((even? n) (square (fast-expt b (/ n 2))))
+        (else (* b (fast-expt b (- n 1))))))
 
 (define (expi b n a) ; Iterative version.
   (cond ((= n 0) a)
