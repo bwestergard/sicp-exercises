@@ -67,11 +67,11 @@
            ))))
   
   (let
-      ((s (merge-sort m (lambda (x y) (> (car x) (car y))))))
+      ((s (merge-sort m (lambda (x y) (> (abs (pivot x)) (abs (pivot y)))))))
     (if (= (length s) 1)
         (eliminate s)
         (wrap (eliminate s) (reduce (shed (eliminate s)))))))
 
-(define foo-matrix '((1 3 4 5) (1 3 9 2) (1 3 9 2)))
+(define foo-matrix '((1 3 4 5) (1 3 9 2) (1 3 9 2) (1 3 9 2)))
 
 (display (reduce foo-matrix))
