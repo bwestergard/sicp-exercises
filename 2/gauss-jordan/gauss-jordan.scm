@@ -46,20 +46,23 @@
   (define (shed m)
     (map (lambda (row) (cdr row)) (cdr m)))
   
+  (define (pivot v)
+  (if (or (not (= (car v) 0)) (null? (cdr v)))
+      (car v)
+      (pivot (cdr v))))
+  
   (define (eliminate m)
     
     (define (scale-vector v)
-      (vector-*-scalar v (/ 1 (car v))))
+      (vector-*-scalar v (/ 1 (pivot v))))
     
     (if (= (car (car m)) 0)
         m
         (let ((scaled (scale-vector (car m))))
           (cons
            scaled
-           (map (lambda (row) (if (= (car row) 0)
-                                  row
-                                  (vector-+-vector (vector-*-scalar scaled (* (car row) -1))
-                                                   row)))
+           (map (lambda (row) (vector-+-vector (vector-*-scalar scaled (* (pivot row) -1))
+                                               row))
                 (cdr m))
            ))))
   
@@ -69,11 +72,6 @@
         (eliminate s)
         (wrap (eliminate s) (reduce (shed (eliminate s)))))))
 
-(define (pivot v)
-  (if (or (not (= (car v) 0)) (null? (cdr v)))
-      (car v)
-      (pivot (cdr v))))
-
-(define foo-matrix '((1 3 4 5) (1 3 9 2) (1 3 9 3)))
+(define foo-matrix '((1 3 4 5) (1 3 9 2) (1 3 9 2)))
 
 (display (reduce foo-matrix))
